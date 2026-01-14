@@ -1,6 +1,6 @@
 package HttpFactory;
 
-public enum HttpMethods {
+public enum HttpMethods {//definire actiuni trimise catre server
     GET("GET"),
     POST("POST"),
     PUT("PUT"),

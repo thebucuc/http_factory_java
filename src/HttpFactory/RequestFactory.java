@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 
 public class RequestFactory {
 
+	//centralizare cereri http - creare de obiecte dupa tipul cererii
     public static GetRequest createGetRequest(String url) throws MalformedURLException, URISyntaxException {
         return new GetRequest(HttpMethods.GET, url);
     }
@@ -53,9 +54,7 @@ public class RequestFactory {
         return new ConnectRequest(url);
     }
 
-    /**
-     * Generic method to create requests based on the method type.
-     */
+   
     public static HttpRequest createRequest(HttpMethods method, String url) throws MalformedURLException, URISyntaxException {
         return switch (method) {
             case GET -> new GetRequest(method, url);

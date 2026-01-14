@@ -3,7 +3,7 @@ package HttpFactory;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class HttpResponse {
+public class HttpResponse { //stocheaza datele de la server
     Map<String, String> _headers = new LinkedHashMap<>();
     HttpVersion _version = HttpVersion.HTTP_1_1;
     int _statusCode = 200;

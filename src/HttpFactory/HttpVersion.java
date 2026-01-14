@@ -1,6 +1,6 @@
 package HttpFactory;
 
-public enum HttpVersion {
+public enum HttpVersion {//definire versiuni de protocol
     HTTP_1_1("HTTP/1.1"),
     HTTP_2("HTTP/2");
 

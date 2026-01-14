@@ -1,6 +1,6 @@
 package HttpFactory;
 
-public enum WellKnownHttpHeaders {
+public enum WellKnownHttpHeaders { //dictionar headere standard
     ACCEPT("Accept"),
     ACCEPT_CHARSET("Accept-Charset"),
     ACCEPT_ENCODING("Accept-Encoding"),

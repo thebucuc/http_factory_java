@@ -8,18 +8,20 @@ import java.util.StringJoiner;
 
 
 public abstract sealed class HttpRequest implements HttpActions permits GetRequest, PostRequest, PutRequest, DeleteRequest, HeadRequest, OptionsRequest, PatchRequest, TraceRequest, ConnectRequest{
-    Map<String, String> _headers = new LinkedHashMap<>();
-    HttpMethods _method;
+    Map<String, String> _headers = new LinkedHashMap<>(); // antetele HTTP
+    HttpMethods _method; // tipul cererii
     String _url;
-    URL _urlObject;
-    String _body;
-    Map<String, String> _queryParams = new LinkedHashMap<>();
-    HttpVersion _version = HttpVersion.HTTP_1_1;
+    URL _urlObject;//obiect URL
+    String _body;//corpul cererii
+    Map<String, String> _queryParams = new LinkedHashMap<>();//parametrii dupa ? in URL
+    HttpVersion _version = HttpVersion.HTTP_1_1;//versiunea protocolului
 
+    //constructor pentru cerere fara body
     public HttpRequest(HttpMethods method, String url) throws URISyntaxException, MalformedURLException {
         this(method, url, null, null, null);
     }
-
+    
+    //constructor extrage din adresa URL si configureaza body
     protected HttpRequest(HttpMethods method, String url, String body, Map<String, String> headers, Map<String, String> queryParams) throws URISyntaxException, MalformedURLException {
         _method = method;
         _url = url;
@@ -50,6 +52,7 @@ public abstract sealed class HttpRequest implements HttpActions permits GetReque
         return _queryParams.get(key);
     }
 
+    
     public String buildUrlWithQuery() {
         if (_queryParams.isEmpty() || _url == null || _url.isEmpty()) {
             return _url;

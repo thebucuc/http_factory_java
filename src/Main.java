@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 public class Main {
     public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
         //Test HTTP Get request creation and execution.
-    	GetRequest request = (GetRequest) RequestFactory.createRequest(HttpMethods.GET, "http://www.wikipedia.com");
+    	GetRequest request = (GetRequest) RequestFactory.createRequest(HttpMethods.GET, "http://www.example.com");
         System.out.println("--- Request ---");
         System.out.println(request.getRawHttpRequest());
         System.out.println("--- Response ---");

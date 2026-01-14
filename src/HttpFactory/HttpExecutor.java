@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HttpExecutor {
+public class HttpExecutor { // interactiune cu serverul
 
     public static HttpResponse execute(HttpRequest request) throws IOException, InterruptedException {
         try {
@@ -16,7 +16,8 @@ public class HttpExecutor {
             return executeWithCurl(request);
         }
     }
-
+    
+    // trimite cererea la stream-ul ncat (trimitere bruta) si primeste raspuns
     public static HttpResponse executeWithNetcat(HttpRequest request) throws IOException, InterruptedException {
         String host = request.getHost();
         int port = request.getPort();
@@ -43,15 +44,15 @@ public class HttpExecutor {
         HttpResponse response = parseResponse(process.getInputStream());
         process.waitFor();
         
-        // Netcat doesn't really have exit codes for HTTP success/fail in the same way, 
-        // but we can check if it actually received anything.
+        
         if (response.getRawHttpResponse() == null || response.getRawHttpResponse().isEmpty()) {
              throw new IOException("Netcat received no response.");
         }
 
         return response;
     }
-
+    
+    //trimite cererea la stream-ul curl (trimitere prin comenzi) si primeste raspuns
     public static HttpResponse executeWithCurl(HttpRequest request) throws IOException, InterruptedException {
         List<String> command = new ArrayList<>();
         command.add("curl");
@@ -90,6 +91,7 @@ public class HttpExecutor {
         return response;
     }
 
+    // parseaza textul trimis de server intr-un obiect de tip HttpResponse
     private static HttpResponse parseResponse(InputStream inputStream) throws IOException {
         HttpResponse response = new HttpResponse();
         StringBuilder rawResponse = new StringBuilder();

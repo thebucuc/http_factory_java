@@ -2,6 +2,7 @@ package HttpFactory;
 import java.util.Map;
 
 public interface HttpActions {
+	//actiunile principale
     HttpResponse execute() throws java.io.IOException, InterruptedException;
     void addHeader(String key, String value);
     void addHeaders(Map<String, String> headers);
